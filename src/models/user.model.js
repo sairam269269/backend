@@ -25,12 +25,12 @@ const userSchema=new Schema(
         trim:true,
         index:true
       },
-      avator:{
-        type:string, // cloudnary url
+      avatar:{
+        type:String, // cloudnary url
         required:true
       },
       coverImage:{
-        type:string // cloudanry url
+        type:String // cloudanry url
       },
       watchHistory:[{
         type:Schema.Types.ObjectId,
@@ -44,7 +44,7 @@ const userSchema=new Schema(
         
       },
       refreshToken:{
-        type:string
+        type:String
       },
     },
     {
@@ -58,6 +58,9 @@ userSchema.pre("save",async function (next) {
   this.password = await bcrypt.hash(this.password,10)
   next()
 })
+userSchema.methods.isPasswordCorrect = async function(password){
+  return await bcrypt.compare(password, this.password)
+}
 
 userSchema.methods.generateAccessToken=function(){
   return jwt.sign(
