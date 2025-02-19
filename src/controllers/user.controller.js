@@ -123,6 +123,6 @@ const logoutUser=asyncHandler(async(req,res)=>{
            .status(200)
            .clearCookie("accessToken",options)
            .clearCookie("refreshToken",options)
-           .json(ApiResponse(200,{},"logged out"))    
+           .json(new ApiResponse(200,{},"logged out"))    
 })
  export {registerUser,loginUser,logoutUser}
