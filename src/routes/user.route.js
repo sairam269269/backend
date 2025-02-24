@@ -22,7 +22,7 @@ const router=Router()
       router.route("/current-user").get(verifyJwt,getCurrentUser)
       router.route("/update-user").patch(verifyJwt,updateUserDetails)
       router.route("/avatar").patch(verifyJwt,upload.single("avatar"),updateAvatar)
-      router.route("/coverImage".patch(verifyJwt,upload.single("coverImage"),updateCoverImage))
+      router.route("/coverImage").patch(verifyJwt,upload.single("coverImage"),updateCoverImage)
       router.route("/C/:username").get(verifyJwt,getUserChannelProfile)
       router.route("/history").get(verifyJwt,getWatchHistory)
 
